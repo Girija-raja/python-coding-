@@ -1,0 +1,27 @@
+import smtplib
+from email.mime.text import MIMEText
+
+sender_email = "abc@gmail.com"
+receiver_email = "abc@gmail.com"
+password = "gkij kdjf eiuh hllw"
+
+message = MIMEText("Hello! This is a test email sent using Python SMTP.")
+message["Subject"] = "Python SMTP Test"
+message["From"] = sender_email
+message["To"] = receiver_email
+
+try:
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()  
+
+    server.login(sender_email, password)
+
+    server.send_message(message)
+
+    print("Email sent successfully!")
+
+except Exception as e:
+    print("Error:", e)
+
+finally:
+    server.quit()
